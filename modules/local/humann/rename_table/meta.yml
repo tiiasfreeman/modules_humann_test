@@ -1,0 +1,66 @@
+name: "rename_table"
+description: HUMAnN utility script to rename table features.
+keywords:
+  - humann
+  - utilitymapping
+  - regroup_table
+  - renorm_table
+  - metaphlan
+  - metagenomics
+  - microbiome
+  - database
+  - biobakery
+tools:
+  - "humann":
+      description: "HUMAnN: The HMP Unified Metabolic Analysis Network, version 3"
+      homepage: "http://huttenhower.sph.harvard.edu/humann"
+      documentation: "http://huttenhower.sph.harvard.edu/humann"
+      tool_dev_url: "https://github.com/biobakery/humann"
+      doi: "10.7554/eLife.65088"
+      licence: ['MIT']
+
+Set up: Requires Utility Mapping database. Run humann/downloadutilitymappingdb first.
+
+input:
+  - rename_input:
+      type: file
+      description: TSV File from HUMAnN output file (after any renormalization and regrouping).
+      pattern: "{humann_output_regroup}", "*_genefamilies-${renorm_units}-${group_type}.tsv"
+  - renorm_units:
+      type: string
+      description: Unit of measurement used in humann/renorm_table to renormalize data.
+                  (Used for naming output file and in humann_functional_profiling subworkflow.)
+      options: copies per million ["cpm"] OR relative abundance ["relab"].
+                (If not renormalized, use reads per kilobase ["rpk"] units.)
+      pattern: "{cpm,relab,rpk}"
+  - group_type:
+type: string
+      description: Built-in grouping option used in humann/regroup_table to reorganize data by function or pathway.
+                  (Used for naming output file and in humann_functional_profiling subworkflow.)
+      pattern: "{uniref90_rxn}"
+                ("regroup" currently under construction, only one option)
+  - name_type:
+      type: string
+      description: Built-in renaming table options.
+      options: "kegg-orthology", "ec", "metacyc-rxn", "metacyc-pwy", "pfam", "eggnog", "go", "infogo1000"
+      pattern: "{kegg-orthology, ec, metacyc-rxn, metacyc-pwy, pfam, eggnog, go, infogo1000}"
+  - utility_mapping_db:
+      type: directory
+      description: Directory containing the downloaded Utility Mapping database files.
+      pattern: "utilitymapping"
+
+output:
+  - humann_output_rename:
+        type: file
+        description: TSV File containing data table with renamed features.
+        pattern: "*_genefamilies-${renorm_units}-${group_type}-${name_type}.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@tiiasfreeman"
+maintainers:
+  - "@tiiasfreeman"
+  - "@CarsonJM"

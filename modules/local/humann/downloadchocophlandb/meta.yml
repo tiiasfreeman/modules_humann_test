@@ -21,7 +21,7 @@ input:
   - chocophlan_db_version:
       type: string
       description: Version of the ChocoPhlAn database to download.
-      pattern: "*.{full,DEMO}"
+      pattern: "{full,DEMO,ec_filtered}"
 
 output:
   - chocophlan_db:

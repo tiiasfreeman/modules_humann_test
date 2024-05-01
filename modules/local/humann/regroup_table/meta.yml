@@ -1,0 +1,58 @@
+name: "regroup_table"
+description: Download the full Utility Mapping Database
+keywords:
+  - humann
+  - utilitymapping
+  - regroup_table
+  - rename_table
+  - metaphlan
+  - metagenomics
+  - microbiome
+  - database
+  - biobakery
+tools:
+  - "humann":
+      description: "HUMAnN: The HMP Unified Metabolic Analysis Network, version 3"
+      homepage: "http://huttenhower.sph.harvard.edu/humann"
+      documentation: "http://huttenhower.sph.harvard.edu/humann"
+      tool_dev_url: "https://github.com/biobakery/humann"
+      doi: "10.7554/eLife.65088"
+      licence: ['MIT']
+
+input:
+  - regroup_input:
+      type: file
+      description: TSV File genefamilies or pathabundance output (from HUMAnN or humann/renorm_table) to be functionally regrouped.
+      pattern: "{genefamilies,pathabundance}", "*_${genefamilies,pathabundance}-${renorm_units}.tsv"
+  - renorm_units:
+      type: string
+      description: Unit of measurement used in humann/renorm_table to renormalize data.
+                  (Used for naming output file and in humann_functional_profiling subworkflow.)
+      options:  copies per million ["cpm"] OR relative abundance ["relab"].
+                // If not renormalized, use reads per kilobase ["rpk"] units.
+      pattern: "{cpm,relab,rpk}"
+  - group_type:
+      type: string
+      description: Built-in grouping options to reorganize data by function or pathway.
+      pattern: "{"uniref90_rxn"}"
+                // "regroup" currently under construction, only one option
+  - utility_mapping_db:
+      type: directory
+      description: Directory containing the downloaded Utility Mapping database files.
+      pattern: "utilitymapping"
+
+output:
+  - humann_output_regroup:
+        type: file
+        description: TSV File containing regrouped table.
+        pattern: "*_${regroup_input}-${renorm_units}-${group_type}.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@tiiasfreeman"
+maintainers:
+  - "@tiiasfreeman"
+  - "@CarsonJM"

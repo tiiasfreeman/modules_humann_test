@@ -1,1 +1,50 @@
-/workspace/modules_humann_test/humann/build/lib/humann/tools/renorm_table.py
+name: "renorm_table"
+description: Renormalize HUMAnN output files into CPM or RELAB units.
+keywords:
+  - humann
+  - regroup_table
+  - rename_table
+  - metaphlan
+  - metagenomics
+  - microbiome
+  - database
+  - biobakery
+tools:
+  - "humann":
+      description: "HUMAnN: The HMP Unified Metabolic Analysis Network, version 3"
+      homepage: "http://huttenhower.sph.harvard.edu/humann"
+      documentation: "http://huttenhower.sph.harvard.edu/humann"
+      tool_dev_url: "https://github.com/biobakery/humann"
+      doi: "10.7554/eLife.65088"
+      licence: ['MIT']
+
+input:
+  - humann_output_type:
+      type: string
+      description: Output type from HUMAnN matching humann_output TSV file (used for naming output file and in humann_functional_profiling subworkflow)
+      pattern: "{genefamilies,pathabundance,pathcoverage}"
+  - humann_output:
+      type: file
+      description: TSV File output from HUMAnN to be renormalized.
+      pattern: "*.{genefamilies,pathabundance,pathcoverage}.tsv"
+  - renorm_units:
+      type: string
+      description: Renormalization scheme unit for module to normalize data table to.
+      options: copies per million ["cpm"], relative abundance ["relab"]
+      pattern: "{cpm,relab}"
+
+output:
+  - humann_output_renorm:
+        type: file
+        description: TSV File containing renormalized data table.
+        pattern: "*_${humann_output_type}-${renorm_units}.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@tiiasfreeman"
+maintainers:
+  - "@tiiasfreeman"
+  - "@CarsonJM"

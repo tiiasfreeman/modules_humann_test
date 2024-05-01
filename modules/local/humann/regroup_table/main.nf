@@ -16,8 +16,8 @@ process HUMANN_REGROUPTABLE {
 
 
     output:
-    tuple val(meta), path("*_genefamilies-${renorm_units}-${group_type}.tsv")   , emit: humann_output_regroup
-    path "versions.yml"                                                         , emit: versions
+    tuple val(meta), path("*_genefamilies-${renorm_units}-${group_type}.tsv")       , emit: humann_output_regroup
+    path "versions.yml"                                                             , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -33,7 +33,7 @@ process HUMANN_REGROUPTABLE {
         --precision 3 \\
         --ungrouped Y \\
         --protected Y \\
-        --output ${prefix}_genefamilies-${renorm_units}-${group_type}.tsv \\
+        --output ${prefix}__genefamilies-${renorm_units}-${group_type}.tsv \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
@@ -46,7 +46,7 @@ process HUMANN_REGROUPTABLE {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}_genefamilies-${renorm_units}-${group_type}.tsv
+    touch ${prefix}__genefamilies-${renorm_units}-${group_type}.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

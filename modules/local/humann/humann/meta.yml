@@ -49,6 +49,10 @@ output:
         type: file
         description: TSV File containing pathway coverage output by HUMAnN.
         pattern: "*_pathcoverage.tsv"
+  - log:
+        type: file
+        description: .log File containing HUMAnN database settings, run modes, search modes, alignment settings, pathway settings, input and output formats and run information.
+        pattern: "*.log"
   - versions:
       type: file
       description: File containing software versions
@@ -56,5 +60,9 @@ output:
 
 authors:
   - "@CarsonJM"
+  - "@tiiasfreeman"
+
 maintainers:
   - "@CarsonJM"
+  - "@tiiasfreeman"
+
