@@ -1,0 +1,10 @@
+metaphlan_profile
+    /workspace/modules_humann_test/humann/humann/tests/data/demo_metaphlan_bugs_list.tsv
+fastq
+    /workspace/modules_humann_test/humann/examples/demo.fastq.gz
+
+genefamilies
+    /workspace/modules_humann_test/humann/humann/tests/data/demo_genefamilies.tsv
+
+pathabundance
+    /workspace/modules_humann_test/humann/humann/tests/data/tooltest-merge_abundance_tables/demo_pathabundance.tsv

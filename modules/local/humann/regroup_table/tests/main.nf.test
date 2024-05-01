@@ -1,0 +1,108 @@
+nextflow_process {
+
+    name "Test Process HUMANN_REGROUPTABLE"
+    script "../main.nf"
+    process "HUMANN_REGROUPTABLE"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "humann"
+    tag "humann/regroup_table"
+
+    // Dependencies
+    tag "humann/downloadutilitymappingdb"
+    tag "humann/downloadchocophlandb"
+
+    setup {
+
+        run("HUMANN_DOWNLOADCHOCOPHLANDB") {
+            script "../../downloadchocophlandb/main.nf"
+            process {
+                """
+                input[0] = "DEMO"
+                """
+            }
+        }
+
+        run("HUMANN_DOWNLOADUNIREFDB") {
+            script "../../downloadunirefdb/main.nf"
+            process {
+                """
+                input[0] = "DEMO_diamond"
+                """
+            }
+        }
+
+        run("HUMANN_HUMANN") {
+            script "/workspace/modules_humann_test/modules/local/humann/humann/main.nf"
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file("/workspace/modules_humann_test/humann/examples/demo.fastq.gz", checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file("/workspace/modules_humann_test/humann/humann/tests/data/demo_metaphlan_bugs_list.tsv", checkIfExists: true)
+                    ]
+                input[2] = HUMANN_DOWNLOADCHOCOPHLANDB.out.chocophlan_db
+                input[3] = HUMANN_DOWNLOADUNIREFDB.out.uniref_db
+                """
+            }
+        }
+
+        run("HUMANN_DOWNLOADUTILITYMAPPINGDB") {
+            script "../../downloadutilitymappingdb/main.nf"
+            process {
+                """
+                input[0] = "full"
+                """
+            }
+        }
+    }
+
+    test("HUMANN_REGROUPTABLE test with HUMANN_HUMANN ") {
+        when {
+            process {
+                """
+                input[0] = HUMANN_HUMANN.out.genefamilies
+                input[1] = "uniref50_rxn"
+                input[2] = HUMANN_DOWNLOADUTILITYMAPPINGDB.out.utility_mapping_db
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("HUMANN_RENORMTABLE test with demo_genefamilies.tsv ") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file("/workspace/modules_humann_test/humann/humann/tests/data/demo_genefamilies.tsv", checkIfExists: true)
+                    ]
+                input[1] = "uniref50_rxn"
+                input[2] = HUMANN_DOWNLOADUTILITYMAPPINGDB.out.utility_mapping_db
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

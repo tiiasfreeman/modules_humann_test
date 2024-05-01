@@ -1,0 +1,2 @@
+subworkflows/humannsubworkflow:
+  - subworkflows/nf-core/humannsubworkflow/**

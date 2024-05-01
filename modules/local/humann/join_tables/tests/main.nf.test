@@ -1,0 +1,53 @@
+nextflow_process {
+
+    name "Test Process HUMANN_JOINTABLES"
+    script "../main.nf"
+    process "HUMANN_JOINTABLES"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "humann"
+    tag "humann/join_tables"
+
+    // Dependencies
+
+    test("HUMANN_JOINTABLES test with genefamilies demo files") {
+        when {
+            process {
+                """
+                input[0] = path("/workspace/modules_humann_test/modules/local/humann/testing_path")
+                input[1] = "multi_sample_genefamilies_"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("HUMANN_JOINTABLES test with demo_genefamilies.tsv ") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = path('/workspace/modules_humann_test/humann/humann/tests/data')
+                input[1] = "pathabundance"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

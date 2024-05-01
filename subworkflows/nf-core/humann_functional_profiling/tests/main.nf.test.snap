@@ -1,0 +1,85 @@
+{
+    "sarscov2 - bam - single_end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies-rpk-uniref90_rxn-kegg-orthology.tsv:md5,5b0e6685b56572b5f4c5a14ce47fe5a7"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.merged_pathcoverage.tsv:md5,84b2febc2aa2559b924aea7b61816157"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,04742bba70be376650ba178479f2e12b",
+                    "versions.yml:md5,19d30a3fd738615cb6cd7fc82def39b1",
+                    "versions.yml:md5,423fddd7ba84a82a56d8e8aa471c60f0",
+                    "versions.yml:md5,9529e17abcbf203ae67c6423d0b913a4",
+                    "versions.yml:md5,a59b3c6782412491809d11b0cefa740e",
+                    "versions.yml:md5,c79b8b92d3011b710b9fc35ec554d5b7",
+                    "versions.yml:md5,e7ed41e9b175d9aac6191f2f823efd8f"
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,2b24951fe9fe2fbad6ad1209f7da1919"
+                    ]
+                ],
+                "genefamilies_merged": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies-rpk-uniref90_rxn-kegg-orthology.tsv:md5,5b0e6685b56572b5f4c5a14ce47fe5a7"
+                    ]
+                ],
+                "humann_log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,2b24951fe9fe2fbad6ad1209f7da1919"
+                    ]
+                ],
+                "pathcoverage_merged": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.merged_pathcoverage.tsv:md5,84b2febc2aa2559b924aea7b61816157"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,04742bba70be376650ba178479f2e12b",
+                    "versions.yml:md5,19d30a3fd738615cb6cd7fc82def39b1",
+                    "versions.yml:md5,423fddd7ba84a82a56d8e8aa471c60f0",
+                    "versions.yml:md5,9529e17abcbf203ae67c6423d0b913a4",
+                    "versions.yml:md5,a59b3c6782412491809d11b0cefa740e",
+                    "versions.yml:md5,c79b8b92d3011b710b9fc35ec554d5b7",
+                    "versions.yml:md5,e7ed41e9b175d9aac6191f2f823efd8f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-30T22:24:45.698003676"
+    }
+}

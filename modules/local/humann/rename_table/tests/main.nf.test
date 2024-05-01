@@ -1,0 +1,133 @@
+nextflow_process {
+
+    name "Test Process HUMANN_RENAMETABLE"
+    script "../main.nf"
+    process "HUMANN_RENAMETABLE"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "humann"
+    tag "humann/rename_table"
+
+    // Dependencies
+    tag "humann/downloadutilitymappingdb"
+    tag "humann/downloadchocophlandb"
+    tag "humann/downloadunirefdb"
+    tag "humann/humann"
+
+    setup {
+        run("HUMANN_DOWNLOADCHOCOPHLANDB") {
+            script "../../downloadchocophlandb/main.nf"
+            process {
+                """
+                input[0] = "DEMO"
+                """
+            }
+        }
+
+        run("HUMANN_DOWNLOADUNIREFDB") {
+            script "../../downloadunirefdb/main.nf"
+            process {
+                """
+                input[0] = "DEMO_diamond"
+                """
+            }
+        }
+
+        run("HUMANN_HUMANN") {
+            script "/workspace/modules_humann_test/modules/local/humann/humann/main.nf"
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file("/workspace/modules_humann_test/METAPHLAN_PROFILE_FOR_TEST.txt", checkIfExists: true)
+                    ]
+                input[2] = HUMANN_DOWNLOADCHOCOPHLANDB.out.chocophlan_db
+                input[3] = HUMANN_DOWNLOADUNIREFDB.out.uniref_db
+                """
+            }
+        }
+
+        run("HUMANN_DOWNLOADUTILITYMAPPINGDB") {
+            script "../../downloadutilitymappingdb/main.nf"
+            process {
+                """
+                input[0] = "full"
+                """
+            }
+        }
+
+        run("HUMANN_RENORMTABLE") {
+            script "/workspace/modules_humann_test/modules/local/humann/renorm_table/main.nf"
+            process {
+                """
+                input[0] = HUMANN_HUMANN.out.genefamilies
+                """
+            }
+        }
+
+        run("HUMANN_REGROUPTABLE") {
+            script "/workspace/modules_humann_test/modules/local/humann/regroup_table/main.nf"
+            process {
+                """
+                input[0] = HUMANN_RENORMTABLE.out.humann_output_cpm
+                input[1] = "uniref50_rxn"
+                input[2] = HUMANN_DOWNLOADUTILITYMAPPINGDB.out.utility_mapping_db
+                """
+            }
+        }
+    }
+
+    test("HUMANN_RENAMETABLE test with HUMANN_HUMANN ") {
+        when {
+            process {
+                """
+                input[0] = HUMANN_REGROUPTABLE.out.genefamilies_cpm_rxn
+//                input[0] = [
+//                    [ id:'test', single_end:true ], // meta map
+//                    file("/workspace/modules_humann_test/humann/humann/tests/data/demo_genefamilies.tsv", checkIfExists: true)
+//                    ]
+                input[1] = "metacyc-rxn"
+                input[2] = HUMANN_DOWNLOADUTILITYMAPPINGDB.out.utility_mapping_db
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("HUMANN_RENORMTABLE test with demo_genefamilies.tsv ") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    file("/workspace/modules_humann_test/humann/humann/tests/data/demo_genefamilies.tsv", checkIfExists: true)
+                    ]
+                input[1] = "pfam"
+                input[2] = HUMANN_DOWNLOADUTILITYMAPPINGDB.out.utility_mapping_db
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+             //   { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

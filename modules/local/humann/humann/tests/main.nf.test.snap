@@ -1,0 +1,215 @@
+{
+    "fastq.gz & DEMO & DEMO_diamond": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_genefamilies.tsv:md5,a2bfffafde5e21635c965375c3fc63c4"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_pathabundance.tsv:md5,3369e02d6ac6632eb5f4dfb89a19ca98"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_pathcoverage.tsv:md5,bc0fffe324b2ed50293c83156ed1bedf"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,b02cd19401de5906501f0b3f9c2afc48"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ],
+                "genefamilies": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_genefamilies.tsv:md5,a2bfffafde5e21635c965375c3fc63c4"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,b02cd19401de5906501f0b3f9c2afc48"
+                    ]
+                ],
+                "pathabundance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_pathabundance.tsv:md5,3369e02d6ac6632eb5f4dfb89a19ca98"
+                    ]
+                ],
+                "pathcoverage": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "demo_pathcoverage.tsv:md5,bc0fffe324b2ed50293c83156ed1bedf"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-23T19:58:56.632783804"
+    },
+    "sarscov2 - bam - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathabundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathcoverage.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ],
+                "genefamilies": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pathabundance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathabundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pathcoverage": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathcoverage.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-19T21:44:03.126978394"
+    },
+    "bacteroides_fragilis - illumina - test1_contigs_fa_gz - stub": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "genefamilies": [
+                    
+                ],
+                "pathabundance": [
+                    
+                ],
+                "pathcoverage": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-19T07:49:55.763714667"
+    }
+}

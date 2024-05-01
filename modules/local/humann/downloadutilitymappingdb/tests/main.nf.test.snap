@@ -1,0 +1,94 @@
+{
+    "full-DEMO": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "map_ec_name.txt.gz:md5,7b13c09a8fe62cd1d7e2d7c94d02c262",
+                        "map_eggnog_name.txt.gz:md5,49f50bb21afcab4d5c609a924f24b3a0",
+                        "map_eggnog_uniref50.txt.gz:md5,f3754e72cee6fb8fb180a127453f2f8f",
+                        "map_eggnog_uniref90.txt.gz:md5,7608d728a854d7cf4cd799ab4667ec2d",
+                        "map_go_name.txt.gz:md5,afd3191ae2ca334400ff8b3d59f523cd",
+                        "map_go_uniref50.txt.gz:md5,e52824669f8808e90e6f9f92d6a018b2",
+                        "map_go_uniref90.txt.gz:md5,355ba2217d46b974d1e82e08b76f8af4",
+                        "map_ko_name.txt.gz:md5,ae1fe6fc36d33cc29ce7aeff987a7cde",
+                        "map_ko_uniref50.txt.gz:md5,02c199b6c25390ff52999bd22283964d",
+                        "map_ko_uniref90.txt.gz:md5,d0b50bf5f3b82a6903a6a8db088f8a25",
+                        "map_level4ec_uniref50.txt.gz:md5,65c37d82bf1641ea42e4b3e5ef24c1f7",
+                        "map_level4ec_uniref90.txt.gz:md5,c341a9d7a5af6eb97131bf5d368664eb",
+                        "map_pfam_name.txt.gz:md5,83fccd966420c365df250f66697407e2",
+                        "map_pfam_uniref50.txt.gz:md5,46555fddb59b7f2bb70e07f27ad85ca6",
+                        "map_pfam_uniref90.txt.gz:md5,65227e7f81405c25e49f21cea231ac40",
+                        "map_uniref50_name.txt.bz2:md5,df0b96820b2f05aa03534b09cb096284",
+                        "map_uniref50_uniref90.txt.gz:md5,23d40b977bbf0c837c7f9fc4d23868a9",
+                        "map_uniref90_name.txt.bz2:md5,5287a9e58a3348ca918a5b1eeeccf63c",
+                        "uniref50-tol-lca.dat.bz2:md5,0eb74edf9c65aa8e5f5c42d32f6c64e1",
+                        "uniref90-tol-lca.dat.bz2:md5,e0d39f2fc7ee51e1f449eda32329284c"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,facf3542343b0971c2b431b72fe876eb"
+                ],
+                "utility_mapping_db": [
+                    [
+                        "map_ec_name.txt.gz:md5,7b13c09a8fe62cd1d7e2d7c94d02c262",
+                        "map_eggnog_name.txt.gz:md5,49f50bb21afcab4d5c609a924f24b3a0",
+                        "map_eggnog_uniref50.txt.gz:md5,f3754e72cee6fb8fb180a127453f2f8f",
+                        "map_eggnog_uniref90.txt.gz:md5,7608d728a854d7cf4cd799ab4667ec2d",
+                        "map_go_name.txt.gz:md5,afd3191ae2ca334400ff8b3d59f523cd",
+                        "map_go_uniref50.txt.gz:md5,e52824669f8808e90e6f9f92d6a018b2",
+                        "map_go_uniref90.txt.gz:md5,355ba2217d46b974d1e82e08b76f8af4",
+                        "map_ko_name.txt.gz:md5,ae1fe6fc36d33cc29ce7aeff987a7cde",
+                        "map_ko_uniref50.txt.gz:md5,02c199b6c25390ff52999bd22283964d",
+                        "map_ko_uniref90.txt.gz:md5,d0b50bf5f3b82a6903a6a8db088f8a25",
+                        "map_level4ec_uniref50.txt.gz:md5,65c37d82bf1641ea42e4b3e5ef24c1f7",
+                        "map_level4ec_uniref90.txt.gz:md5,c341a9d7a5af6eb97131bf5d368664eb",
+                        "map_pfam_name.txt.gz:md5,83fccd966420c365df250f66697407e2",
+                        "map_pfam_uniref50.txt.gz:md5,46555fddb59b7f2bb70e07f27ad85ca6",
+                        "map_pfam_uniref90.txt.gz:md5,65227e7f81405c25e49f21cea231ac40",
+                        "map_uniref50_name.txt.bz2:md5,df0b96820b2f05aa03534b09cb096284",
+                        "map_uniref50_uniref90.txt.gz:md5,23d40b977bbf0c837c7f9fc4d23868a9",
+                        "map_uniref90_name.txt.bz2:md5,5287a9e58a3348ca918a5b1eeeccf63c",
+                        "uniref50-tol-lca.dat.bz2:md5,0eb74edf9c65aa8e5f5c42d32f6c64e1",
+                        "uniref90-tol-lca.dat.bz2:md5,e0d39f2fc7ee51e1f449eda32329284c"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,facf3542343b0971c2b431b72fe876eb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-23T21:05:04.297714098"
+    },
+    "full-DEMO - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,facf3542343b0971c2b431b72fe876eb"
+                ],
+                "utility_mapping_db": [
+                    [
+                        
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,facf3542343b0971c2b431b72fe876eb"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-23T21:08:08.192650416"
+    }
+}
