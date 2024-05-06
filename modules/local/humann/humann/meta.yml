@@ -31,7 +31,7 @@ input:
     type: directory
     description: Previously downloaded ChocoPhlAn database (can be downloaded with humann/downloadchocophlandb module)
     pattern: "*"
-  - uniref:
+  - uniref_db:
     type: directory
     description: Previously downloaded Uniref database (can be downloaded with humann/downloadunirefdb module)
     pattern: "*"

@@ -34,7 +34,7 @@ input:
   - group_type:
       type: string
       description: Built-in grouping options to reorganize data by function or pathway.
-      pattern: "{"uniref90_rxn"}"
+      pattern: "{uniref90_rxn}"
                 // "regroup" currently under construction, only one option
   - utility_mapping_db:
       type: directory

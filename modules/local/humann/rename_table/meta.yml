@@ -41,7 +41,7 @@ type: string
                 ("regroup" currently under construction, only one option)
   - name_type:
       type: string
-      description: Built-in renaming table options.
+      description: Built-in renaming options for table features.
       options: "kegg-orthology", "ec", "metacyc-rxn", "metacyc-pwy", "pfam", "eggnog", "go", "infogo1000"
       pattern: "{kegg-orthology, ec, metacyc-rxn, metacyc-pwy, pfam, eggnog, go, infogo1000}"
   - utility_mapping_db:

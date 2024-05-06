@@ -1,51 +1,75 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "humannsubworkflow"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+name: "humann_functional_profiling"
+description: HUManN functional profiling from metagenomic or metatranscriptomic FASTQ data
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
-components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - humann
+  - chocophlan
+  - utilitymapping
+  - cat
+  - fastq
+  - uniref
+  - metaphlan
+  - metagenomics
+  - microbiome
+  - database
+  - biobakery
+tools:
+  - "humann":
+      description: "HUMAnN: The HMP Unified Metabolic Analysis Network, version 3"
+      homepage: "http://huttenhower.sph.harvard.edu/humann"
+      documentation: "http://huttenhower.sph.harvard.edu/humann"
+      tool_dev_url: "https://github.com/biobakery/humann"
+      doi: "10.7554/eLife.65088"
+      licence: ['MIT']
+
 input:
-  - ch_bam:
-      type: file
-      description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+  - val_chocophlan_db_version:
+      type: string
+      description: Version of the ChocoPhlan database to download.
+      pattern: "{full,DEMO,ec_filtered}"
+  - val_uniref_db_version:
+      type: string
+      description: Version of the Uniref database to download.
+      pattern: "{uniref50_diamond, uniref90_diamond, uniref50_ec_filtered_diamond, uniref90_ec_filtered_diamond,DEMO_diamond}"
+  - val_utility_mapping_db_version:
+      type: string
+      description: Version of the Utility Mapping database to download.
+      pattern: "{full,DEMO}"
+  - ch_fastq:
+//      type: channel(file)
+      description: Read set (forward and reverse reads merged if paired-end) to be used as input.
+      pattern: "*.{fastq, fastq.gz, fasta, fasta.gz}"
+  - ch_metaphlan_profile:
+      type: channel(file)
+      description: Taxonomic profile output by running MetaPhlAn.
+      pattern: "*"
+  - val_renorm_units:
+      type: string
+      description: Renormalization scheme unit for module to normalize data table to.
+      options: copies per million ["cpm"] OR relative abundance ["relab"]
+                // To skip renormalization, use reads per kilobase ["rpk"] units.
+      pattern: "{cpm,relab,rpk}"
+  - val_group_type:
+      type: string
+      description: Built-in grouping options to reorganize data by function or pathway.
+      pattern: "{uniref90_rxn}"
+                // "regroup" currently under construction, only one option
+  - val_name_type:
+      type: string
+      description: Built-in renaming options for table features.
+      options: "kegg-orthology", "ec", "metacyc-rxn", "metacyc-pwy", "pfam", "eggnog", "go", "infogo1000"
+      pattern: "{kegg-orthology, ec, metacyc-rxn, metacyc-pwy, pfam, eggnog, go, infogo1000}"
+
 output:
-  - bam:
-      type: file
-      description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
-      type: file
-      description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
-      type: file
-      description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+  - uniref_db:
+        type: directory
+        description: Directory containing the downloaded Uniref database files.
+        pattern: "uniref"
   - versions:
       type: file
-      description: |
-        File containing software versions
-        Structure: [ path(versions.yml) ]
+      description: File containing software versions
       pattern: "versions.yml"
+
 authors:
-  - "@tiiasfreeman"
+  - "@CarsonJM"
 maintainers:
-  - "@tiiasfreeman"
+  - "@CarsonJM"
