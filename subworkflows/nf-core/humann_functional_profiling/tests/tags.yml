@@ -1,2 +1,2 @@
-subworkflows/humannsubworkflow:
-  - subworkflows/nf-core/humannsubworkflow/**
+subworkflows/humann_functional_profiling:
+  - subworkflows/nf-core/humann_functional_profiling/**

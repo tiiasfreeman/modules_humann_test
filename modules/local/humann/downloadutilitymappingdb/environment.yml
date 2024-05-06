@@ -1,0 +1,7 @@
+name: "humann_downloadutilitymappingdb"
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - "bioconda::humann=3.8"

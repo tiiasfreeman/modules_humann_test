@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_genefamilies.tsv:md5,a2bfffafde5e21635c965375c3fc63c4"
+                        "test1_1_genefamilies.tsv:md5,37c7f9e26141fd213f73877176f0076c"
                     ]
                 ],
                 "1": [
@@ -17,7 +17,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_pathabundance.tsv:md5,3369e02d6ac6632eb5f4dfb89a19ca98"
+                        "test1_1_pathabundance.tsv:md5,bd790d8269b4bcf475bc5662ad3fdd99"
                     ]
                 ],
                 "2": [
@@ -26,7 +26,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_pathcoverage.tsv:md5,bc0fffe324b2ed50293c83156ed1bedf"
+                        "test1_1_pathcoverage.tsv:md5,ac43fdbd36e126d295a36982152bdec5"
                     ]
                 ],
                 "3": [
@@ -35,7 +35,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.log:md5,b02cd19401de5906501f0b3f9c2afc48"
+                        "test.log:md5,7351fe27626790b11a77ab99fa9b0a2d"
                     ]
                 ],
                 "4": [
@@ -47,7 +47,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_genefamilies.tsv:md5,a2bfffafde5e21635c965375c3fc63c4"
+                        "test1_1_genefamilies.tsv:md5,37c7f9e26141fd213f73877176f0076c"
                     ]
                 ],
                 "log": [
@@ -56,7 +56,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.log:md5,b02cd19401de5906501f0b3f9c2afc48"
+                        "test.log:md5,7351fe27626790b11a77ab99fa9b0a2d"
                     ]
                 ],
                 "pathabundance": [
@@ -65,7 +65,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_pathabundance.tsv:md5,3369e02d6ac6632eb5f4dfb89a19ca98"
+                        "test1_1_pathabundance.tsv:md5,bd790d8269b4bcf475bc5662ad3fdd99"
                     ]
                 ],
                 "pathcoverage": [
@@ -74,7 +74,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "demo_pathcoverage.tsv:md5,bc0fffe324b2ed50293c83156ed1bedf"
+                        "test1_1_pathcoverage.tsv:md5,ac43fdbd36e126d295a36982152bdec5"
                     ]
                 ],
                 "versions": [
@@ -86,7 +86,48 @@
             "nf-test": "0.8.4",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-04-23T19:58:56.632783804"
+        "timestamp": "2024-05-01T23:34:29.267686473"
+    },
+    "HUMANN_HUMANN with Biobakery demo fastq and metaphlan profile": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    
+                ],
+                "genefamilies": [
+                    
+                ],
+                "log": [
+                    
+                ],
+                "pathabundance": [
+                    
+                ],
+                "pathcoverage": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-05-01T23:03:57.555977518"
     },
     "sarscov2 - bam - stub": {
         "content": [

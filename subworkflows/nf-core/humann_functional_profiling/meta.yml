@@ -29,17 +29,18 @@ input:
   - val_uniref_db_version:
       type: string
       description: Version of the Uniref database to download.
-      pattern: "{uniref50_diamond, uniref90_diamond, uniref50_ec_filtered_diamond, uniref90_ec_filtered_diamond,DEMO_diamond}"
+      pattern: "{DEMO_diamond, uniref50_diamond, uniref90_diamond, uniref50_ec_filtered_diamond, uniref90_ec_filtered_diamond,DEMO_diamond}"
   - val_utility_mapping_db_version:
       type: string
       description: Version of the Utility Mapping database to download.
       pattern: "{full,DEMO}"
   - ch_fastq:
-//      type: channel(file)
+      type: channel(file; [ val(meta), [fastq list]])
       description: Read set (forward and reverse reads merged if paired-end) to be used as input.
+      options: val(meta) can be "single_end" (single_end:true) or "paired_end" (single_end:false)
       pattern: "*.{fastq, fastq.gz, fasta, fasta.gz}"
   - ch_metaphlan_profile:
-      type: channel(file)
+      type: channel(file; [ val(meta), [profile]])
       description: Taxonomic profile output by running MetaPhlAn.
       pattern: "*"
   - val_renorm_units:
@@ -58,6 +59,11 @@ input:
       description: Built-in renaming options for table features.
       options: "kegg-orthology", "ec", "metacyc-rxn", "metacyc-pwy", "pfam", "eggnog", "go", "infogo1000"
       pattern: "{kegg-orthology, ec, metacyc-rxn, metacyc-pwy, pfam, eggnog, go, infogo1000}"
+  - val_multi_sample_join:
+      type: string
+      description: Whether or not to merge multi-sample final output tables using humann_jointables.
+      IMPORTANT: If "{Y}", val_renorm_units must be in "cpm".
+      options: "{Y,N}"
 
 output:
   - uniref_db:
@@ -70,6 +76,7 @@ output:
       pattern: "versions.yml"
 
 authors:
-  - "@CarsonJM"
+  - "@tiiasfreeman"
 maintainers:
   - "@CarsonJM"
+  - "@tiiasfreeman"

@@ -41,9 +41,8 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:true ], // meta map
-                    file("/workspace/modules_humann_test/humann/humann/tests/data/demo.fastq", checkIfExists: true)
-    // general use  file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true)
-
+                //  file("/workspace/modules_humann_test/humann/humann/tests/data/demo.fastq", checkIfExists: true)
+                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true)
                     ]
                 input[1] = [
                     [ id:'test', single_end:true ], // meta map
@@ -64,7 +63,7 @@ nextflow_process {
         }
     }
 
-    test("sarscov2 - bam - stub") {
+    test("demo.fasta.gz - stub") {
 
         options "-stub"
 

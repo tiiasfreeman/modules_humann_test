@@ -7,6 +7,7 @@ process HUMANN_JOINTABLES {
         'https://depot.galaxyproject.org/singularity/humann:3.8--pyh7cba7a3_0':
         'biocontainers/humann:3.8--pyh7cba7a3_0' }"
 
+
     input:
     path(humann_outputdir)
     val file_type
@@ -25,7 +26,7 @@ process HUMANN_JOINTABLES {
     """
 
     humann_join_tables \\
-        --input ${humann_outputdir} \\
+        --input combined_humann_outputs \\
         --output ${prefix}_${file_type}_merged.tsv \\
         --file_name ${file_type} \\
         ${args}

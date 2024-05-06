@@ -58,6 +58,34 @@ output:
       description: File containing software versions
       pattern: "versions.yml"
 
+Flags:
+  "-i", "--input"
+      [REQUIRED]
+      description: input fastq.gz file
+      pattern: "*.fast.gz"
+  "-o", "--output"
+      [REQUIRED]
+      description: directory to write output files in
+      pattern: ${OUTDIR}
+  "--threads"
+      description: number of treads/processes
+  "--taxonomic-profile"
+      [OPTIONAL]
+      description: a taxonomic profile (output file created by MetaPhlan)
+      pattern:
+  "--nucleotide-database"
+      [OPTIONAL]
+      description:
+      pattern:
+  "--protein-database"
+      [OPTIONAL]
+      description:
+      pattern:
+  "--o-log"
+      [OPTIONAL]
+      description:
+      pattern: "*.log"
+
 authors:
   - "@CarsonJM"
   - "@tiiasfreeman"

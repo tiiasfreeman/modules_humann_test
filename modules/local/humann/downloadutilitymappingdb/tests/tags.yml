@@ -1,0 +1,2 @@
+humann/downloadutilitymappingdb:
+  - "modules/nf-core/humann/downloadutilitymappingdb/**"
