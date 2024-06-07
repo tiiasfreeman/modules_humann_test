@@ -1,0 +1,84 @@
+nextflow_workflow {
+
+    name "Subworkflow PANPHLAN_GENOMIC_PROFILING"
+    script "/workspace/modules_humann_test/subworkflows/nf-core/panphlan_genomic_profiling/main.nf"
+    config "./nextflow.config"
+    workflow "PANPHLAN_GENOMIC_PROFILING"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/panphlan_genomic_profiling"
+    tag "panphlan/downloadpangenome"
+    tag "panphlan/panphlan_map"
+    tag "panphlan/panphlan_profiling"
+
+    test("Bacteroides_fragilis - combined single end - fails") {
+        when {
+            workflow {
+                """
+                input[0] = "Bacteroides_fragilis"
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_1.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_2.fastq.gz", checkIfExists:true)
+                ]
+                input[2] = "false"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+
+    test("Eubacterium rectale sample fastq - paired_end - works") {
+
+        when {
+            workflow {
+                """
+                input[0] = "Eubacterium_rectale"
+                input[1] = Channel.of ([
+                            [ id:"test1", single_end:false ],
+                                    file("/workspace/modules_humann_test/panphlan_tutorial/samples_fastq/CCMD34381688ST-21-0.fastq")
+                            ])
+                input[2] = "false"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+
+    test("Staphylococcus aureus - paired end - works") {
+        when {
+            workflow {
+                """
+                input[0] = "Staphylococcus_aureus"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        file("/workspace/modules_humann_test/modules/local/data/Staph_aureus_SRR29085994.fastq.gz")
+                ])
+                input[2] = "false"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

@@ -1,0 +1,52 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "panphlan_genomic_profiling"
+## TODO nf-core: Add a description of the module and list keywords
+description: write your description here
+keywords:
+  - sort
+  - example
+  - genomics
+tools:
+  - "panphlan":
+      description: "PanPhlAn is a strain-level metagenomic profiling tool for identifying the gene composition and *in-vivo* transcriptional activity of individual strains in metagenomic samples."
+      homepage: "https://github.com/SegataLab/panphlan/wiki/Home_3_0"
+      documentation: "None"
+      tool_dev_url: "http://github.com/SegataLab/panphlan/"
+      doi: "https://doi.org/10.1101/2020.11.19.388223"
+      licence: ['MIT']
+
+input:
+  - val_species_name:
+      type: string
+      description: Name of species for analysis.
+      pattern: "Genus_species" (ie. "Bacteroides_fragilis")
+  - ch_sample_sequence:
+      type: file
+      description: Input file for metagenomic sample(s).
+      pattern: "*.{.fasta,.fastq,.tar.gz,.tar.bz2,.sra}"
+
+output:
+  - pangenome:
+      type: file
+      description: Pangenome (.tsv) file downloaded via "panphlan/downloadpangenome" module containing all info needed to map genes to provided sequences
+      includes: UniRef90 cluster IDs, gene ID, genome ID, contig ID, start & stop positions
+      pattern:  "${prefix}/*_pangenome.tsv"
+  - mapping_dir:
+      type: file
+      description: Generated file summarizing aligned reads for gene sequence region coverage from "panphlan/panphlan_map" module
+      pattern: "${meta.id}_${species_name}.tsv"
+  - panphlan_profile:
+      type: file
+      description: profile_matrix from "panphlan/panphlan_profiling module" containing gene presence/absence matrix in .tsv format
+      pattern: "${species_name}_profile.tsv"
+  - versions:
+      type: file
+      description: File containing software versions for each module
+      pattern: "versions.yml"
+
+authors:
+  - "@LaurenGonsalves"
+  - "@tiiasfreeman"
+maintainers:
+  - "@LaurenGonsalves"
