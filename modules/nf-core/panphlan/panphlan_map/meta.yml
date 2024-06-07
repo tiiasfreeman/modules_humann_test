@@ -1,0 +1,59 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "panphlan/panphlan_map"
+description: Map each metagenomic sample against species database to screen
+documentation: ['panphlan_map'] "https://github.com/SegataLab/panphlan/wiki/PanPhlAn-mapping-3_0"
+keywords:
+  - genomics
+  - bowtie2
+  - samtools
+  - mpileup
+  - alignment
+  - pangenomics
+tools:
+  - "panphlan":
+      description: "PanPhlAn is a strain-level metagenomic profiling tool for identifying the gene composition and *in-vivo* transcriptional activity of individual strains in metagenomic samples."
+      homepage: "https://github.com/SegataLab/panphlan/wiki/Home_3_0"
+      documentation: "None"
+      tool_dev_url: "http://github.com/SegataLab/panphlan/"
+      doi: "https://doi.org/10.1101/2020.11.19.388223"
+      licence: ['MIT']
+
+input:
+  - pangenome:
+      type: file
+      description: Pangenome (.tsv) file downloaded via "panphlan/downloadpangenome" module containing all info needed to map genes to provided sequences
+      includes: UniRef90 cluster IDs, gene ID, genome ID, contig ID, start & stop positions
+      pattern:  "${prefix}/*_pangenome.tsv"
+  - indexes:
+      type: file
+      description: Bowtie2 indexes file downloaded via "panphlan/downloadpangenome" module
+      pattern: "${species_name}/*.bt2"
+  - sample_sequence:
+      type: file
+      description: Input file for metagenomic sample(s).
+      pattern: "*.{.fasta,.fastq,.tar.gz,.tar.bz2,.sra}"
+  - species_name:
+      type: string
+      description: Name
+      pattern: "Genus_species" (ie. "Bacteroides_fragilis")
+
+output:
+  - mapping_dir:
+      type: file
+      description: Generated file summarizing aligned reads for gene sequence region coverage.
+      pattern: "${meta.id}_${species_name}.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+nextflow.config optional arguments:
+--verbose
+    description: show progress information; default ["None"]
+
+authors:
+  - "@LaurenGonsalves"
+  - "@tiiasfreeman"
+maintainers:
+  - "@LaurenGonsalves"

@@ -1,0 +1,2 @@
+panphlan/profiling:
+  - "modules/nf-core/panphlan/profiling/**"

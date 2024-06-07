@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "panphlan/downloadpangenome"
+description: Download pangenomic builds made up of at least 2 reference genomes.
+documentation: ['downloadpangenome'] "https://github.com/SegataLab/panphlan/wiki/PanPhlAn-download-pangenome-3_0"
+keywords:
+  - genomics
+  - pangenomics
+  - database
+  - reference
+  - contigs
+  - bowtie2 indexes
+  - annotation
+tools:
+  - "panphlan":
+      description: "PanPhlAn is a strain-level metagenomic profiling tool for identifying the gene composition and *in-vivo* transcriptional activity of individual strains in metagenomic samples."
+      homepage: "https://github.com/SegataLab/panphlan/wiki/Home_3_0"
+      documentation: "None"
+      tool_dev_url: "http://github.com/SegataLab/panphlan/"
+      doi: "https://doi.org/10.1101/2020.11.19.388223"
+      licence: ['MIT']
+
+## TODO nf-core: Add a description of all of the variables used as input
+input:
+  - species_name:
+      type: string
+      description: Name of species for analysis.
+      pattern: "Genus_species" (ie. "Bacteroides_fragilis")
+
+output:
+  - indexes:
+      type: file
+      description: Bowtie2 indexes file from downloaded dataset
+      pattern: "${species_name}/*.bt2"
+  - pangenome:
+      type: file
+      description: Pangenome (.tsv) file from downloaded dataset containing all info needed to map genes to provided sequences
+      includes: UniRef90 cluster IDs, gene ID, genome ID, contig ID, start & stop positions
+      pattern:  "${prefix}/*_pangenome.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@LaurenGonsalves"
+  - "@tiiasfreeman"
+maintainers:
+  - "@LaurenGonsalves"

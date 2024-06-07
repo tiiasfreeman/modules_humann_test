@@ -1,0 +1,45 @@
+{
+    "Test download B. fragilis pangenome": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "Bacteroides_fragilis.1.bt2:md5,3817e33332a6c3c8c21589bac2c0f2df",
+                        "Bacteroides_fragilis.2.bt2:md5,573db3ab72de9ff8e52e7b8452518488",
+                        "Bacteroides_fragilis.3.bt2:md5,53f57747525c87b19cec519b550f7c9a",
+                        "Bacteroides_fragilis.4.bt2:md5,c5dc03141827afa22e0a6c18e3522b97",
+                        "Bacteroides_fragilis.rev.1.bt2:md5,6488a3b459c54219fa95f8d144fc95c0",
+                        "Bacteroides_fragilis.rev.2.bt2:md5,57869f321c3534d68ee2b6e437b630b7"
+                    ]
+                ],
+                "1": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
+                ],
+                "2": [
+                    "versions.yml:md5,0f1949425375d8c603081ed92e57d83f"
+                ],
+                "indexes": [
+                    [
+                        "Bacteroides_fragilis.1.bt2:md5,3817e33332a6c3c8c21589bac2c0f2df",
+                        "Bacteroides_fragilis.2.bt2:md5,573db3ab72de9ff8e52e7b8452518488",
+                        "Bacteroides_fragilis.3.bt2:md5,53f57747525c87b19cec519b550f7c9a",
+                        "Bacteroides_fragilis.4.bt2:md5,c5dc03141827afa22e0a6c18e3522b97",
+                        "Bacteroides_fragilis.rev.1.bt2:md5,6488a3b459c54219fa95f8d144fc95c0",
+                        "Bacteroides_fragilis.rev.2.bt2:md5,57869f321c3534d68ee2b6e437b630b7"
+                    ]
+                ],
+                "pangenome": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
+                ],
+                "versions": [
+                    "versions.yml:md5,0f1949425375d8c603081ed92e57d83f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-07T19:05:31.33300438"
+    }
+}

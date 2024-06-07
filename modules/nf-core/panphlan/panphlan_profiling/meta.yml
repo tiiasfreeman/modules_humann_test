@@ -1,0 +1,59 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "panphlan_profiling"
+description: Merge and process map results from 'panphlan_map' module to get final gene presence/absence profiles of detected strains or extracting transcriptional activity of individual strains from DNA & RNAseq pairs.
+documentation: ['panphlan_profiling'] "https://github.com/SegataLab/panphlan/wiki/PanPhlAn-profiling"
+keywords:
+  - genomics
+  - merge
+  - presence/absence
+  - DNAseq/RNAseq
+  - profiles
+  - thresholds
+tools:
+  - "panphlan":
+      description: "PanPhlAn is a strain-level metagenomic profiling tool for identifying the gene composition and *in-vivo* transcriptional activity of individual strains in metagenomic samples."
+      homepage: "https://github.com/SegataLab/panphlan/wiki/Home_3_0"
+      documentation: "None"
+      tool_dev_url: "http://github.com/SegataLab/panphlan/"
+      doi: "https://doi.org/10.1101/2020.11.19.388223"
+      licence: ['MIT']
+
+input:
+  - mapping_dir:
+      type: file
+      description: Generated file summarizing aligned reads for gene sequence region coverage from "panphlan/panphlan_map" module
+      pattern: "${meta.id}_${species_name}.tsv"
+  - pangenome:
+      type: file
+      description: Bowtie2 indexes file downloaded via "panphlan/downloadpangenome" module
+      pattern: "${species_name}/*.bt2"
+  - species_name:
+      type: string
+      description: Name of species for analysis.
+      pattern: "Genus_species" (ie. "Bacteroides_fragilis")
+
+output:
+  - profile_matrix:
+      type: file
+      description: Gene presence/absence matrix in .tsv format
+      pattern: "${species_name}_profile.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+nextflow.config optional arguments:
+--min_coverage
+    description: minimum coverage threshold; default [2x]
+--left_max
+    description: strain presence/absence plateau curve threshold (ie value must be lower than [left_max]); default [1.25]
+--right_min
+    description: strain presence/absence plateau curve threshold (ie value must be higher than [right_min]); default [0.75]
+--verbose
+    description: show progress information; default ["None"]
+
+authors:
+  - "@LaurenGonsalves"
+maintainers:
+  - "@LaurenGonsalves"

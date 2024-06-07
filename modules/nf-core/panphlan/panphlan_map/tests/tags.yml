@@ -1,0 +1,2 @@
+panphlan/map:
+  - "modules/nf-core/panphlan/map/**"
