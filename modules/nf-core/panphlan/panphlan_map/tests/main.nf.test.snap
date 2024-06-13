@@ -1,0 +1,80 @@
+{
+    "Bacteroides fragilis sample fastq - single_end '- stub' ": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_Bacteroides_fragilis.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,d9e8b34830d477d673900d100ea62420"
+                ],
+                "mapping_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_Bacteroides_fragilis.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d9e8b34830d477d673900d100ea62420"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-10T19:03:03.872836089"
+    },
+    "Bacteroides fragilis sample fastq - single_end": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_Bacteroides_fragilis.tsv:md5,6ac420a56792567619a08bc1d054706a"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,d9e8b34830d477d673900d100ea62420"
+                ],
+                "mapping_dir": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_Bacteroides_fragilis.tsv:md5,6ac420a56792567619a08bc1d054706a"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d9e8b34830d477d673900d100ea62420"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-10T19:02:46.840544315"
+    }
+}

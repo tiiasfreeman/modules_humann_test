@@ -37,8 +37,14 @@ process PANPHLAN_DOWNLOADPANGENOME {
 
     stub:
     def args = task.ext.args ?: ''
+    prefix = "${species_name}"
     """
-    touch ${prefix}.bam
+    mkdir ${prefix}
+    touch ${prefix}/${prefix}.bt2
+    touch ${prefix}/${prefix}_pangenome.tsv
+
+    mkdir indexes
+    mv ${prefix}/*.bt2 indexes
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

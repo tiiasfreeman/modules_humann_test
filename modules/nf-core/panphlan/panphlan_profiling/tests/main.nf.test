@@ -1,47 +1,46 @@
 nextflow_process {
 
     name "Test Process PANPHLAN_PROFILING"
-    script "/workspace/modules_humann_test/modules/local/PanPhlAn3/panphlan_profiling/main.nf"
+    script "modules/nf-core/panphlan/panphlan_profiling/main.nf"
     process "PANPHLAN_PROFILING"
     config "./nextflow.config"
 
             setup {
                 run("PANPHLAN_DOWNLOADPANGENOME") {
-                    // script "modules/nf-core/panphlan/downloadpangenome/main.nf"
-                    script "/workspace/modules_humann_test/modules/local/PanPhlAn3/downloadpangenome/main.nf"
+                    script "modules/nf-core/panphlan/downloadpangenome/main.nf"
                     process {
                         """
-                        input[0] = "Eubacterium_rectale"
+                        input[0] = "Bacteroides_fragilis"
                         """
+                        }
                     }
-                }
 
                 run("PANPHLAN_MAP") {
-                    //script "modules/nf-core/panphlan/map/main.nf"
-                    script "/workspace/modules_humann_test/modules/local/PanPhlAn3/panphlan_map/main.nf"
+                    script "modules/nf-core/panphlan/panphlan_map/main.nf"
                     process {
                         """
                         input[0] = PANPHLAN_DOWNLOADPANGENOME.out.pangenome
                         input[1] = PANPHLAN_DOWNLOADPANGENOME.out.indexes
-
-                        input[2] = Channel.of (
-                            [
-                            [id:"test1", single_end:false ],
-                                    file("/workspace/modules_humann_test/panphlan_tutorial/samples_fastq/CCMD34381688ST-21-0.fastq")
-                            ]
-                        )
-                        input[3] = "Eubacterium_rectale"
+                        input[2] = Channel.of([
+                            [ id:'test', single_end:false ], // meta map
+                                file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists:true),
+                                file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz", checkIfExists:true),
+                                file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_1.fastq.gz", checkIfExists:true),
+                                file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_2.fastq.gz", checkIfExists:true)
+                        ])
+                        //input[3] = "Bacteroides_fragilis"
                         """
                     }
                 }
             }
-    test("Should run without failures") {
+
+    test("Testing Mapping on Bacteroides fragilis sample fastq - single_end") {
         when {
             process {
                 """
                 input[0] = PANPHLAN_MAP.out.mapping_dir
                 input[1] = PANPHLAN_DOWNLOADPANGENOME.out.pangenome
-                input[2] = "Eubacterium_rectale"
+                input[2] = "Bacteroides_fragilis"
 
                 """
             }
@@ -51,7 +50,27 @@ nextflow_process {
             assert process.success
             assert snapshot(process.out).match()
         }
+    }
 
+    test("Testing Mapping on Bacteroides fragilis sample fastq - single_end '-stub' ") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = PANPHLAN_MAP.out.mapping_dir
+                input[1] = PANPHLAN_DOWNLOADPANGENOME.out.pangenome
+                input[2] = "Bacteroides_fragilis"
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
     }
 
 }

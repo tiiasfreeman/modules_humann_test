@@ -1,4 +1,37 @@
 {
+    "Test download B. fragilis pangenome '-stub' ": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "Bacteroides_fragilis.bt2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,0f1949425375d8c603081ed92e57d83f"
+                ],
+                "indexes": [
+                    [
+                        "Bacteroides_fragilis.bt2:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pangenome": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "versions": [
+                    "versions.yml:md5,0f1949425375d8c603081ed92e57d83f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-10T17:50:00.930495226"
+    },
     "Test download B. fragilis pangenome": {
         "content": [
             {

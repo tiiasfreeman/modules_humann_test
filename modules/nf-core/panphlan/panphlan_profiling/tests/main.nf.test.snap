@@ -1,0 +1,37 @@
+{
+    "Testing Mapping on Bacteroides fragilis sample fastq - single_end '-stub' ": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "Bacteroides_fragilis_profile.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,09cf69e7738a738a3ae5fbc93b024b95"
+                ],
+                "profile_matrix": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "Bacteroides_fragilis_profile.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,09cf69e7738a738a3ae5fbc93b024b95"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-10T19:24:44.584853636"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "Bacteroides_fragilis - combined single end - fails": {
+        "content": [
+            {
+                "0": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "4": [
+                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf"
+                ],
+                "mapping_directory": [
+                    
+                ],
+                "pangenome": [
+                    "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
+                ],
+                "panphlan_merged_maps_txt": [
+                    
+                ],
+                "panphlan_profile": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-13T08:18:15.821873583"
+    }
+}
