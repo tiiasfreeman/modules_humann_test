@@ -1,0 +1,35 @@
+nextflow_workflow {
+
+    name "Subworkflow PANPHLAN_GENOMIC_PROFILING"
+    script "subworkflows/nf-core/panphlan_genomic_profiling/main.nf"
+    config "./nextflow.config"
+    workflow "PANPHLAN_GENOMIC_PROFILING"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/panphlan_genomic_profiling"
+    tag "panphlan/downloadpangenome"
+    tag "panphlan/panphlan_map"
+    tag "panphlan/panphlan_profiling"
+
+    test("Staphylococcus aureus - paired end - works") {
+        when {
+            workflow {
+                """
+                input[0] = "Staphylococcus_aureus"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        [file("/workspace/modules_humann_test/modules/local/SRA_data/Staph_aureus_SRR29085994.fastq.gz")]
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

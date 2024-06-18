@@ -23,7 +23,7 @@ input:
       pattern: "Genus_species" (ie. "Bacteroides_fragilis")
   - ch_sample_sequence:
       type: file
-      description: Input file for metagenomic sample(s).
+      description: Input file(s) for metagenomic sample(s).
       pattern: "*.{.fasta,.fastq,.tar.gz,.tar.bz2,.sra}"
 
 output:
@@ -44,6 +44,9 @@ output:
       type: file
       description: File containing software versions for each module
       pattern: "versions.yml"
+
+other arguments:
+  '--fasta'; Reads are fasta format. Default[panphlan_map, panphlan_profile] = fastq
 
 authors:
   - "@LaurenGonsalves"

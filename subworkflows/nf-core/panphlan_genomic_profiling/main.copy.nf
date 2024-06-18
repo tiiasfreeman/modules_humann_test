@@ -160,7 +160,7 @@ test("Bacteroides_fragilis - combined single end - fails") {
             //def (metadata,files) = tuple
         //files.collect {file -> tuple(metadata, file) } }
         //.flatten()
-        
+
     def sample_sequence = ch_sample_sequences.split()
 
     PANPHLAN_MAP (
@@ -178,3 +178,116 @@ test("Bacteroides_fragilis - combined single end - fails") {
         PANPHLAN_DOWNLOADPANGENOME.out.pangenome,
         val_species_name)
     ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
+
+
+    panphlan_merged_maps_txt = PANPHLAN_MAP.out.mapping_dir
+        .map{ it[1].toString() }
+        .collectFile(name: 'panphlan_merged_maps.txt') { paths -> paths.join('\n')}
+    panphlan_merged_maps_txt.view()
+
+
+    def merged_mapping_dirs = PANPHLAN_MAP.out.mapping_dir
+        .collectFile(name: 'merged_map_dir.tsv') { files ->
+            files.collect {it.text}.join('\n')
+        }
+    merged_mapping_dirs.view()
+
+
+def merged_mapping_dir = combined_mapping_dir.map { maps ->
+        def combined_maps = file("merged_mapping_dir.tsv")
+        def header = maps[0].text.readLines().head()
+        def content = maps.collect { it.text.readLines().drop(1) }.flatten()
+
+        combined_maps.text = [header, *content].join('\n')
+        return combined_maps
+    }
+
+
+
+
+// Copy of
+if else refined version of the subworkflow
+
+//
+// Run PanPhlAn: Metagenomic profiling to identify gene composition of individual strains
+//
+
+include {   PANPHLAN_DOWNLOADPANGENOME              }   from '/workspace/modules_humann_test/modules/nf-core/panphlan/downloadpangenome/main.nf'
+include {   PANPHLAN_MAP                            }   from '/workspace/modules_humann_test/modules/nf-core/panphlan/panphlan_map/main.nf'
+include {   PANPHLAN_PROFILING                      }   from '/workspace/modules_humann_test/modules/nf-core/panphlan/panphlan_profiling/main.nf'
+
+workflow PANPHLAN_GENOMIC_PROFILING {
+
+take:
+    val_species_name                    //   value: "Genus_species";                    name of species for analysis
+    ch_sample_sequences                  // channel: val(meta), path(list of files);     meta: ID is final name for run file, fastq sequence(s) for samples
+    //val_single_end                      //   value: "[True/False]";                     [True] single-end samples, [False] paired-end samples
+
+    main:
+
+    ch_versions = Channel.empty()
+
+    PANPHLAN_DOWNLOADPANGENOME (val_species_name)
+    ch_versions = ch_versions.mix(PANPHLAN_DOWNLOADPANGENOME.out.versions.first())
+
+    def sample_sequences = ch_sample_sequences
+        .flatMap{ metadata, files -> files.collect {file -> [metadata, file] } }
+
+    def sample_count = sample_sequences.count()
+
+    if (sample_count < 1) {
+
+        println("Please provide sample sequence to analyze.")
+
+    } else if (sample_count = 1) {
+
+        PANPHLAN_MAP (
+            PANPHLAN_DOWNLOADPANGENOME.out.pangenome,
+            PANPHLAN_DOWNLOADPANGENOME.out.indexes,
+            ch_sample_sequences,
+            val_species_name)
+        ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
+
+        def ch_mapping_dir = PANPHLAN_MAP.out.sample_map
+            .view()
+
+        PANPHLAN_PROFILING (
+            ch_mapping_dir,
+            PANPHLAN_DOWNLOADPANGENOME.out.pangenome,
+            val_species_name)
+        ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
+
+        emit:
+            pangenome               = PANPHLAN_DOWNLOADPANGENOME.out.pangenome          // channel: $prefix/{species_name}_pangenome.tsv; pangenome used for selected species
+            mapping_directory       = ch_mapping_dir                                    // channel: val(meta), path("${species_name}_map"); mapping directory built for selected species
+            panphlan_profile        = PANPHLAN_PROFILING.out.profile_matrix             // channel: val(meta), path("*.tsv"); final profile matrix
+            versions                = ch_versions                                       // channel: [ versions.yml ]
+
+    } else if (sample_count > 1) {
+
+        sample_sequences.each { tuple_sequence ->
+            PANPHLAN_MAP (
+                PANPHLAN_DOWNLOADPANGENOME.out.pangenome,
+                PANPHLAN_DOWNLOADPANGENOME.out.indexes,
+                tuple_sequence,
+                val_species_name
+            ) }
+        ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
+
+        def ch_combined_mapping_dir = PANPHLAN_MAP.out.sample_map
+            .map{ [ [id:'all_samples'], it[1] ] }.groupTuple( sort: { it.getName() }  )
+            .view()
+
+        PANPHLAN_PROFILING (
+            ch_combined_mapping_dir,
+            PANPHLAN_DOWNLOADPANGENOME.out.pangenome,
+            val_species_name)
+        ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
+
+        emit:
+            pangenome               = PANPHLAN_DOWNLOADPANGENOME.out.pangenome          // channel: $prefix/{species_name}_pangenome.tsv; pangenome used for selected species
+            mapping_directory       = ch_combined_mapping_dir                           // channel: val(meta), path("${species_name}_map"); mapping directory built for selected species
+            panphlan_profile        = PANPHLAN_PROFILING.out.profile_matrix             // channel: val(meta), path("*.tsv"); final profile matrix
+            versions                = ch_versions                                       // channel: [ versions.yml ]
+    }
+}

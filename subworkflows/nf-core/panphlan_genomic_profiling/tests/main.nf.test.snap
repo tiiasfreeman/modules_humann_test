@@ -6,31 +6,49 @@
                     "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "all_samples"
+                        },
+                        [
+                            "test_Bacteroides_fragilis_1.tsv:md5,6ac420a56792567619a08bc1d054706a",
+                            "test_Bacteroides_fragilis_2.tsv:md5,90fe72a43ddc16438422229f32a0bda2",
+                            "test_Bacteroides_fragilis_3.tsv:md5,1e78db779e61328b143923cb3a8a9de1",
+                            "test_Bacteroides_fragilis_4.tsv:md5,8005b0995169549f4f5348dc7606f0a6"
+                        ]
+                    ]
                 ],
                 "2": [
                     
                 ],
                 "3": [
-                    
-                ],
-                "4": [
-                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf"
+                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf",
+                    "versions.yml:md5,9743fc172c58fa40d3c30950b7844912",
+                    "versions.yml:md5,9743fc172c58fa40d3c30950b7844912"
                 ],
                 "mapping_directory": [
-                    
+                    [
+                        {
+                            "id": "all_samples"
+                        },
+                        [
+                            "test_Bacteroides_fragilis_1.tsv:md5,6ac420a56792567619a08bc1d054706a",
+                            "test_Bacteroides_fragilis_2.tsv:md5,90fe72a43ddc16438422229f32a0bda2",
+                            "test_Bacteroides_fragilis_3.tsv:md5,1e78db779e61328b143923cb3a8a9de1",
+                            "test_Bacteroides_fragilis_4.tsv:md5,8005b0995169549f4f5348dc7606f0a6"
+                        ]
+                    ]
                 ],
                 "pangenome": [
                     "Bacteroides_fragilis_pangenome.tsv:md5,1efc51187d49ef33f23894f64c6c2d47"
-                ],
-                "panphlan_merged_maps_txt": [
-                    
                 ],
                 "panphlan_profile": [
                     
                 ],
                 "versions": [
-                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf"
+                    "versions.yml:md5,91040bc18a58ef8d1f8deb19414b74cf",
+                    "versions.yml:md5,9743fc172c58fa40d3c30950b7844912",
+                    "versions.yml:md5,9743fc172c58fa40d3c30950b7844912"
                 ]
             }
         ],
@@ -38,6 +56,6 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2024-06-13T08:18:15.821873583"
+        "timestamp": "2024-06-14T19:40:42.244129291"
     }
 }

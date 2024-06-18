@@ -8,11 +8,9 @@ process PANPHLAN_PROFILING {
         'biocontainers/mulled-v2-e3818ba00c0f15bcda92c714b4fa500c626067fe:cae224e6965f9abd8b08407231aff3bba632f1de-0' }"
 
     input:
-    path(mapping_dir)
+    tuple val(meta), path(sample_map)
     path(pangenome)
     val(species_name)
-
-
 
     output:
     tuple val(meta), path("*.tsv"), emit: profile_matrix
@@ -26,8 +24,11 @@ process PANPHLAN_PROFILING {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
+    mkdir -p ${species_name}_map_dir
+    mv *_${species_name}_*.tsv ${species_name}_map_dir
+
     panphlan_profiling.py \\
-        --i_dna ${mapping_dir} \\
+        --i_dna ${species_name}_map_dir \\
         --o_matrix ${species_name}_profile.tsv \\
         -p ${pangenome} \\
         ${args}
@@ -42,6 +43,9 @@ process PANPHLAN_PROFILING {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
+    mkdir -p ${species_name}_map_dir
+    mv *_${species_name}_*.tsv ${species_name}_map_dir
+
     touch ${species_name}_profile.tsv
 
     cat <<-END_VERSIONS > versions.yml

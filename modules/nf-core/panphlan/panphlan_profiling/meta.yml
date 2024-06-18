@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "panphlan_profiling"
-description: Merge and process map results from 'panphlan_map' module to get final gene presence/absence profiles of detected strains or extracting transcriptional activity of individual strains from DNA & RNAseq pairs.
+description: Process map results from 'panphlan_map' module in mapping_dir directory to get final gene presence/absence profiles of detected strains or extracting transcriptional activity of individual strains from DNA & RNAseq pairs.
 documentation: ['panphlan_profiling'] "https://github.com/SegataLab/panphlan/wiki/PanPhlAn-profiling"
 keywords:
   - genomics
@@ -20,9 +20,9 @@ tools:
       licence: ['MIT']
 
 input:
-  - mapping_dir:
+  - sample_map:
       type: file
-      description: Generated file summarizing aligned reads for gene sequence region coverage from "panphlan/panphlan_map" module
+      description: Generated map file summarizing aligned reads for gene sequence region coverage from "panphlan/panphlan_map" module
       pattern: "${meta.id}_${species_name}.tsv"
   - pangenome:
       type: file

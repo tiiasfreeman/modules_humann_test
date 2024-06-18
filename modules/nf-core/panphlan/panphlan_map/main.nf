@@ -14,8 +14,8 @@ process PANPHLAN_MAP {
     val(species_name)
 
     output:
-    tuple val(meta), path("${species_name}_map_dir")    , emit: mapping_dir
-    path "versions.yml"                                 , emit: versions
+    tuple val(meta), path("${meta.id}_${species_name}_${index}.tsv")    , emit: sample_map
+    path "versions.yml"                                                 , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -23,16 +23,14 @@ process PANPHLAN_MAP {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    index = task.index
     """
     panphlan_map.py \\
         -p $pangenome \\
         --indexes ${indexes}/${species_name} \\
         -i ${sample_sequence} \\
-        -o ${meta.id}_${species_name}.tsv \\
+        -o ${meta.id}_${species_name}_${index}.tsv \\
         ${args}
-
-    mkdir -p ${species_name}_map_dir
-    mv ${meta.id}_${species_name}.tsv ${species_name}_map_dir
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -44,10 +42,7 @@ process PANPHLAN_MAP {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${meta.id}_${species_name}.tsv
-    mkdir ${species_name}_map_dir
-    
-    mv ${meta.id}_${species_name}.tsv ${species_name}_map_dir
+    touch ${meta.id}_${species_name}_${index}.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
