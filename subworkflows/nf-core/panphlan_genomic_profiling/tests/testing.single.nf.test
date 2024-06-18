@@ -1,0 +1,38 @@
+nextflow_workflow {
+
+    name "Subworkflow PANPHLAN_GENOMIC_PROFILING"
+    script "/workspace/modules_humann_test/subworkflows/nf-core/panphlan_genomic_profiling/testing.multiple.nf"
+    config "./nextflow.config"
+    workflow "PANPHLAN_GENOMIC_PROFILING"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/panphlan_genomic_profiling"
+    tag "panphlan/downloadpangenome"
+    tag "panphlan/panphlan_map"
+    tag "panphlan/panphlan_profiling"
+
+    test("Eubacterium_rectale - paired end - works") {
+        when {
+            workflow {
+                """
+                input[0] = "Eubacterium_rectale"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/N021.fastq"),
+                        file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/H3M518116.fastq")]
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}
+
+

@@ -1,0 +1,37 @@
+{
+    "Eubacterium_rectale - paired end - works": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "mapping_directory": [
+                    
+                ],
+                "pangenome": [
+                    
+                ],
+                "panphlan_profile": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-18T19:05:34.214377759"
+    }
+}

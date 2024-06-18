@@ -291,3 +291,27 @@ take:
             versions                = ch_versions                                       // channel: [ versions.yml ]
     }
 }
+
+
+//NF TESTS THAT IM KEEPING
+
+    test("Eubacterium_rectale - paired end, single sample - works") {
+        when {
+            workflow {
+                """
+                input[0] = "Eubacterium_rectale"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/E_rectale_CCMD34381688ST-21-0.fastq")]
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }

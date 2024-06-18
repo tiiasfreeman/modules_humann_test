@@ -1,7 +1,7 @@
 nextflow_workflow {
 
     name "Subworkflow PANPHLAN_GENOMIC_PROFILING"
-    script "subworkflows/nf-core/panphlan_genomic_profiling/main.nf"
+    script "/workspace/modules_humann_test/subworkflows/nf-core/panphlan_genomic_profiling/testing.single.nf"
     config "./nextflow.config"
     workflow "PANPHLAN_GENOMIC_PROFILING"
 
@@ -12,14 +12,15 @@ nextflow_workflow {
     tag "panphlan/panphlan_map"
     tag "panphlan/panphlan_profiling"
 
-    test("Staphylococcus aureus - paired end - works") {
+    test("Eubacterium_rectale - paired end - works") {
         when {
             workflow {
                 """
-                input[0] = "Staphylococcus_aureus"
+                input[0] = "Eubacterium_rectale"
                 input[1] = Channel.of([
                     [ id:'test', single_end:false ], // meta map
-                        [file("/workspace/modules_humann_test/modules/local/SRA_data/Staph_aureus_SRR29085994.fastq.gz")]
+                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/N021.fastq"),
+                        file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/H3M518116.fastq")]
                 ])
                 """
             }
