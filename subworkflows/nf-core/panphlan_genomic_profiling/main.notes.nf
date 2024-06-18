@@ -292,18 +292,18 @@ take:
     }
 }
 
-
-//NF TESTS THAT IM KEEPING
-
-    test("Eubacterium_rectale - paired end, single sample - works") {
+test("Bacteroides_fragilis - single end, multiple samples - fails") {
         when {
             workflow {
                 """
-                input[0] = "Eubacterium_rectale"
-                input[1] = Channel.of([
-                    [ id:'test', single_end:false ], // meta map
-                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/E_rectale_CCMD34381688ST-21-0.fastq")]
-                ])
+                input[0] = "Bacteroides_fragilis"
+                input[1] = Channel.of([ [ id:'test', single_end:false ], // meta map
+                        [file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_1.fastq.gz", checkIfExists:true),
+                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_2.fastq.gz", checkIfExists:true)]
+                    ])
+                input[2] = "multiple"
                 """
             }
         }

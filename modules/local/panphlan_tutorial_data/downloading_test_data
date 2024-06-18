@@ -1,0 +1,5 @@
+From PanPhlAn3 Tutorial: https://github.com/SegataLab/panphlan/wiki/Tutorial-3_0
+
+
+wget https://www.dropbox.com/s/oi26jg0v7ktlavc/panphlan_tutorial_samples.tar.bz2
+tar -xvjf panphlan_tutorial_samples.tar.bz2

@@ -11,7 +11,7 @@ workflow PANPHLAN_GENOMIC_PROFILING {
 take:
     val_species_name                        //   value: "Genus_species";                    name of species for analysis
     ch_sample_sequences                     // channel: val(meta), path(list of files);     meta: ID is final name for run file, fastq sequence(s) for samples
-    val_sample_count                        //   value: "single", "multiple";               number of sample sequence files being assessed
+    val_sample_count                        //   value: {"single","multiple"};              number of sample sequence files being assessed
 
     main:
 
@@ -22,8 +22,6 @@ take:
     ch_versions = ch_versions.mix(PANPHLAN_DOWNLOADPANGENOME.out.versions)
 
     if (val_sample_count == "multiple") {
-
-        println("Running PanPhlAn for multiple sample files.")
 
         // Separate individual sequencing samples to run through PANPLAN_MAP
         def sample_sequences = ch_sample_sequences
@@ -39,7 +37,7 @@ take:
             ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
 
         //Create channel with all PANPHLAN_MAP maps for PANPHLAN_PROFILING
-        def ch_ combined_mapping_dir = PANPHLAN_MAP.out.sample_map
+        def ch_combined_mapping_dir = PANPHLAN_MAP.out.sample_map
             .map{ [ [id:'all_samples'], it[1] ] }.groupTuple( sort: { it.getName() }  )
             .view()
 
@@ -52,7 +50,7 @@ take:
 
         emit:
             pangenome               = PANPHLAN_DOWNLOADPANGENOME.out.pangenome          // channel: $prefix/{species_name}_pangenome.tsv; pangenome used for selected species
-            mapping_directory       = ch_combined_mapping_dir                           // channel: val(meta), path("${species_name}_map_dir"); mapping directory built for selected samples
+            mapping_directory       = ch_combined_mapping_dir.view()                    // channel: val(meta), path("${species_name}_map_dir"); mapping directory built for selected samples
             panphlan_profile        = PANPHLAN_PROFILING.out.profile_matrix             // channel: val(meta), path("*.tsv"); final profile matrix
             versions                = ch_versions                                       // channel: [ versions.yml ]
 
@@ -76,6 +74,7 @@ take:
         ch_versions = ch_versions.mix(PANPHLAN_MAP.out.versions.first())
 
         emit:
+
             pangenome               = PANPHLAN_DOWNLOADPANGENOME.out.pangenome          // channel: $prefix/{species_name}_pangenome.tsv; pangenome used for selected species
             mapping_directory       = PANPHLAN_MAP.out.sample_map                       // channel: val(meta), path("${species_name}_map_dir"); mapping directory built for selected samples
             panphlan_profile        = PANPHLAN_PROFILING.out.profile_matrix             // channel: val(meta), path("*.tsv"); final profile matrix
@@ -83,7 +82,7 @@ take:
 
     } else {
 
-        println("Error: Please provide amount of sample sequencing file(s) [options; "single", "multiple"].")
+        println("Error: Please indicate if you are submitting a single or multiple sample sequencing file(s) [options; "single", "multiple"].")
 
     }
 }

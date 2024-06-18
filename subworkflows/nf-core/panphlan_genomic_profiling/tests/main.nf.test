@@ -1,7 +1,7 @@
 nextflow_workflow {
 
     name "Subworkflow PANPHLAN_GENOMIC_PROFILING"
-    script "subworkflows/nf-core/panphlan_genomic_profiling/main.nf"
+    script "subworkflows/nf-core/panphlan_genomic_profiling/main.faster.nf"
     config "./nextflow.config"
     workflow "PANPHLAN_GENOMIC_PROFILING"
 
@@ -12,17 +12,39 @@ nextflow_workflow {
     tag "panphlan/panphlan_map"
     tag "panphlan/panphlan_profiling"
 
-    test("Bacteroides_fragilis - combined single end - fails") {
+    test("Eubacterium_rectale - paired end, single sample - passes") {
         when {
             workflow {
                 """
-                input[0] = "Bacteroides_fragilis"
-                input[1] = Channel.of([ [ id:'test', single_end:false ], // meta map
-                        [file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz", checkIfExists:true),
-                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz", checkIfExists:true),
-                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_1.fastq.gz", checkIfExists:true),
-                        file("https://github.com/nf-core/test-datasets/raw/modules/data/genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test2_2.fastq.gz", checkIfExists:true)]
-                    ])
+                input[0] = "Eubacterium_rectale"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/E_rectale_CCMD34381688ST-21-0.fastq")]
+                ])
+                input[2] = "single"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+
+        test("Eubacterium_rectale - paired end, multiple samples - passes") {
+        when {
+            workflow {
+                """
+                input[0] = "Eubacterium_rectale"
+                input[1] = Channel.of([
+                    [ id:'test', single_end:false ], // meta map
+                        [file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/N021.fastq"),
+                        file("/workspace/modules_humann_test/modules/local/panphlan_tutorial_data/samples_fastq/H3M518116.fastq")]
+                ])
+                input[2] = "multiple"
                 """
             }
         }
