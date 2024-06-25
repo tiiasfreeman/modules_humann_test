@@ -8,7 +8,7 @@ process HUMANN_HUMANN {
         'biocontainers/humann:3.8--pyh7cba7a3_0' }"
 
     input:
-    tuple val(meta) , path(reads)
+    tuple val(meta) , path(paired_reads)
     tuple val(meta2), path(metaphlan_profile)
     path chocophlan_db
     path uniref_db
@@ -26,9 +26,13 @@ process HUMANN_HUMANN {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def all_reads = paired_reads.flatten().collect { it.toString() }.join(' ')
     """
+
+    cat ${all_reads} > concatenated_fastq_files.fastq
+
     humann \\
-        --input ${reads} \\
+        --input concatenated_fastq_files.fastq \\
         --output ./ \\
         --threads ${task.cpus} \\
         --taxonomic-profile ${metaphlan_profile} \\

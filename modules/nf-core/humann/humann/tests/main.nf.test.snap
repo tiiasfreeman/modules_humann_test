@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_genefamilies.tsv:md5,37c7f9e26141fd213f73877176f0076c"
+                        "concatenated_fastq_files_genefamilies.tsv:md5,90abfb8e7452c8ec200a30afbaefa820"
                     ]
                 ],
                 "1": [
@@ -17,7 +17,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_pathabundance.tsv:md5,bd790d8269b4bcf475bc5662ad3fdd99"
+                        "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
                     ]
                 ],
                 "2": [
@@ -26,7 +26,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_pathcoverage.tsv:md5,ac43fdbd36e126d295a36982152bdec5"
+                        "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
                     ]
                 ],
                 "3": [
@@ -35,7 +35,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.log:md5,7351fe27626790b11a77ab99fa9b0a2d"
+                        "test.log:md5,b56a5a28449db36fdb7ae8d9be46019e"
                     ]
                 ],
                 "4": [
@@ -47,7 +47,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_genefamilies.tsv:md5,37c7f9e26141fd213f73877176f0076c"
+                        "concatenated_fastq_files_genefamilies.tsv:md5,90abfb8e7452c8ec200a30afbaefa820"
                     ]
                 ],
                 "log": [
@@ -56,7 +56,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test.log:md5,7351fe27626790b11a77ab99fa9b0a2d"
+                        "test.log:md5,b56a5a28449db36fdb7ae8d9be46019e"
                     ]
                 ],
                 "pathabundance": [
@@ -65,7 +65,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_pathabundance.tsv:md5,bd790d8269b4bcf475bc5662ad3fdd99"
+                        "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
                     ]
                 ],
                 "pathcoverage": [
@@ -74,7 +74,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test1_1_pathcoverage.tsv:md5,ac43fdbd36e126d295a36982152bdec5"
+                        "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
                     ]
                 ],
                 "versions": [
@@ -84,9 +84,9 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.10.1"
+            "nextflow": "24.04.2"
         },
-        "timestamp": "2024-05-01T23:34:29.267686473"
+        "timestamp": "2024-06-25T07:29:42.690830114"
     },
     "HUMANN_HUMANN with Biobakery demo fastq and metaphlan profile": {
         "content": [
@@ -252,5 +252,94 @@
             "nextflow": "23.10.1"
         },
         "timestamp": "2024-04-19T07:49:55.763714667"
+    },
+    "demo.fasta.gz - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathabundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathcoverage.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ],
+                "genefamilies": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_genefamilies.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "log": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test.log:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pathabundance": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathabundance.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "pathcoverage": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_pathcoverage.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ec12a2ee414ef5a97015efd842118bc1"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-25T06:04:44.574637685"
     }
 }

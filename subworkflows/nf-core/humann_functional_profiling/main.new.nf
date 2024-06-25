@@ -57,27 +57,25 @@ workflow HUMANN_FUNCTIONAL_PROFILING {
     HUMANN_DOWNLOADUNIREFDB (val_uniref_db_version)                                     //variable should remain, depends on mapping types
     ch_versions = ch_versions.mix(HUMANN_DOWNLOADUNIREFDB.out.versions.first())
 
-    HUMANN_DOWNLOADUTILITYMAPPINGDB (val_utility_mapping_db_version)                    //change to "full", delete variable
+    HUMANN_DOWNLOADUTILITYMAPPINGDB ("val_utility_mapping_db_version")                  //change to "full", delete variable
     ch_versions = ch_versions.mix(HUMANN_DOWNLOADUTILITYMAPPINGDB.out.versions.first())
 
 //
-// Formatting FASTQ data as .fastq file(s) for input into HUMAnN
+// Formatting FASTQ **paired-end data** as .fastq file for input into HUMAnN
 //
+    // Note: HUMAnN documentation suggests all paired-end files are concatenated into single
+    //      FASTQ or FASTA file because HUMAnN doesn't handle single paired-end files well
 
-    CAT_FASTQ (ch_fastq)
-    ch_versions = ch_versions.mix(CAT_FASTQ.out.versions.first())
-    //Note: Will merge properly named paired-end data into single file
-    //or pass on single-end data. See CAT_FASTQ module for further
-    //guidance on naming.
+    def sample_sequences = ch_fastq.flatMap{ metadata, fastq_files -> fastq_files}
 
+    sample_sequences.collectFile(name: 'concatenated_fastq_files.fastq') {path -> path} into {concatenated_fastq_files}
 
 //
 // Running HUMAnN module
 //
 
-CAT_FASTQ.out.reads.each { reads ->
     HUMANN_HUMANN (
-        reads,
+        concatenated_fastq_files,
         ch_metaphlan_profile,
         HUMANN_DOWNLOADCHOCOPHLANDB.out.chocophlan_db,
         HUMANN_DOWNLOADUNIREFDB.out.uniref_db)
