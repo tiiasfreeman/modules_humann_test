@@ -39,12 +39,11 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = [
-                    [ id:'test', single_end:true ], // meta map
-                    [
-                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true)
-                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz', checkIfExists: true)]
-                    ]
+                input[0] = Channel.of([
+                        [ id:'test1', single_end:false ], // meta map
+                        [file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true),
+                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz', checkIfExists: true)]
+                        ])
                 input[1] = [
                     [ id:'test', single_end:true ], // meta map
                     file("/workspace/modules_humann_test/METAPHLAN_PROFILE_FOR_TEST.txt", checkIfExists: true)

@@ -5,17 +5,17 @@
                 "0": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
-                        "concatenated_fastq_files_genefamilies.tsv:md5,90abfb8e7452c8ec200a30afbaefa820"
+                        "concatenated_fastq_files_genefamilies.tsv:md5,45dc53e4b23322f17c25c266218e822d"
                     ]
                 ],
                 "1": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
                         "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
                     ]
@@ -23,8 +23,8 @@
                 "2": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
                         "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
                     ]
@@ -32,10 +32,10 @@
                 "3": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
-                        "test.log:md5,b56a5a28449db36fdb7ae8d9be46019e"
+                        "test1.log:md5,789e1dc52202d8464b508ede6297cd05"
                     ]
                 ],
                 "4": [
@@ -44,26 +44,26 @@
                 "genefamilies": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
-                        "concatenated_fastq_files_genefamilies.tsv:md5,90abfb8e7452c8ec200a30afbaefa820"
+                        "concatenated_fastq_files_genefamilies.tsv:md5,45dc53e4b23322f17c25c266218e822d"
                     ]
                 ],
                 "log": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
-                        "test.log:md5,b56a5a28449db36fdb7ae8d9be46019e"
+                        "test1.log:md5,789e1dc52202d8464b508ede6297cd05"
                     ]
                 ],
                 "pathabundance": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
                         "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
                     ]
@@ -71,8 +71,8 @@
                 "pathcoverage": [
                     [
                         {
-                            "id": "test",
-                            "single_end": true
+                            "id": "test1",
+                            "single_end": false
                         },
                         "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
                     ]
@@ -86,7 +86,7 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.2"
         },
-        "timestamp": "2024-06-25T07:29:42.690830114"
+        "timestamp": "2024-06-29T09:53:28.232548553"
     },
     "HUMANN_HUMANN with Biobakery demo fastq and metaphlan profile": {
         "content": [

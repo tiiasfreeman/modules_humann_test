@@ -8,7 +8,7 @@ process HUMANN_HUMANN {
         'biocontainers/humann:3.8--pyh7cba7a3_0' }"
 
     input:
-    tuple val(meta) , path(paired_reads)
+    tuple val(meta), path(paired_reads)
     tuple val(meta2), path(metaphlan_profile)
     path chocophlan_db
     path uniref_db

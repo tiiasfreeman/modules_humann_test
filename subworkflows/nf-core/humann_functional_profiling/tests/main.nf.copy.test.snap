@@ -1,0 +1,103 @@
+{
+    "sarscov2 - bam - single_end": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_genefamilies.tsv:md5,45dc53e4b23322f17c25c266218e822d"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,04742bba70be376650ba178479f2e12b",
+                    "versions.yml:md5,19d30a3fd738615cb6cd7fc82def39b1",
+                    "versions.yml:md5,a59b3c6782412491809d11b0cefa740e",
+                    "versions.yml:md5,fa101852bcd38a320c9bfd737bfcd8d0"
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.log:md5,ee12a8fd720b4012ccbc4d6de7e05582"
+                    ]
+                ],
+                "humann_genefamilies": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_genefamilies.tsv:md5,45dc53e4b23322f17c25c266218e822d"
+                    ]
+                ],
+                "humann_log": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "test1.log:md5,ee12a8fd720b4012ccbc4d6de7e05582"
+                    ]
+                ],
+                "humann_pathabundance": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_pathabundance.tsv:md5,41ef86f099f900c9fe62172665a8973c"
+                    ]
+                ],
+                "humann_pathcoverage": [
+                    [
+                        {
+                            "id": "test1",
+                            "single_end": false
+                        },
+                        "concatenated_fastq_files_pathcoverage.tsv:md5,8bda4cffb29d65a73716e11f0b8bf712"
+                    ]
+                ],
+                "pathabundance_merged": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,04742bba70be376650ba178479f2e12b",
+                    "versions.yml:md5,19d30a3fd738615cb6cd7fc82def39b1",
+                    "versions.yml:md5,a59b3c6782412491809d11b0cefa740e",
+                    "versions.yml:md5,fa101852bcd38a320c9bfd737bfcd8d0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-06-29T09:55:44.02498344"
+    }
+}

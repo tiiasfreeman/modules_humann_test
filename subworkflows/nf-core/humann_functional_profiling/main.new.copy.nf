@@ -83,6 +83,7 @@ workflow HUMANN_FUNCTIONAL_PROFILING {
     }
 
     def ch_humann_renorm_pathabundance = HUMANN_RENORM_PATHABUNDANCE.out.humann_output_renorm.collect()
+        .flatMap { collected_tuples -> collected_tuples.collect { it[1] } }
 
 //
 // Customizing HUMAnN output files: Genefamilies
@@ -94,14 +95,16 @@ workflow HUMANN_FUNCTIONAL_PROFILING {
 //
 
         HUMANN_JOIN_PATHABUNDANCE (
-                //HUMANN_RENORM_PATHABUNDANCE.out.humann_output_renorm.map{ [ [id:'pathabundance'], it[1] ] }.groupTuple( sort: "deep" ),
-                ch_humann_renorm_pathabundance,
-                "pathabundance")
+            ch_humann_renorm_pathabundance,
+            "pathabundance")
         ch_versions = ch_versions.mix(HUMANN_JOIN_PATHABUNDANCE.out.versions.first())
 
     emit:
 
-    pathabundance_merged = HUMANN_JOIN_PATHABUNDANCE.out.humann_output_merged               // channel: [ val(meta), [humann_output_merged]]; merged pathabundace data from multi-sample fastq data
+    pathabundance_merged    = HUMANN_JOIN_PATHABUNDANCE.out.humann_output_merged               // channel: [ val(meta), [humann_output_merged]]; merged pathabundace data from multi-sample fastq data
+    humann_pathabundance    = ch_humann_pathabundance
+    humann_genefamilies     = ch_humann_genefamilies
+    humann_pathcoverage     = ch_humann_pathcoverage
 
     versions                = ch_versions                                                   // channel: [ versions.yml ]
     humann_log              = HUMANN_HUMANN.out.log
