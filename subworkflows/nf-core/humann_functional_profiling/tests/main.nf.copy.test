@@ -43,7 +43,7 @@ nextflow_workflow {
                 input[5] = "cpm"
                 input[6] = "uniref90_rxn"
                 input[7] = "kegg-orthology"
-                input[8] = "Y"
+                input[8] = "N"
                 """
             }
         }
