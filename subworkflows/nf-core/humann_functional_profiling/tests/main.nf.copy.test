@@ -36,6 +36,8 @@ nextflow_workflow {
                         [ id:'test1', single_end:false ], // meta map
                         [file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true),
                         file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz', checkIfExists: true)]
+                        //[ id:'test1', single_end:false ], // meta map
+                        //[file('/workspace/modules_humann_test/modules/local/data/demo.fastq.gz', checkIfExists: true)]
                         ])
                 input[4] = [
                     [ id:'test', single_end:true ], // meta map
@@ -43,7 +45,7 @@ nextflow_workflow {
                 input[5] = "cpm"
                 input[6] = "uniref90_rxn"
                 input[7] = "kegg-orthology"
-                input[8] = "N"
+                input[8] = "Y"
                 """
             }
         }
