@@ -1,0 +1,36 @@
+nextflow_workflow {
+
+    name "Test Subworkflow FASTQ_TAXONOMIC_PROFILE_METAPHLAN"
+    script "/workspace/modules_humann_test/subworkflows/nf-core/fastq_taxonomic_profile_metaphlan/main.nf"
+    workflow "FASTQ_TAXONOMIC_PROFILE_METAPHLAN"
+    config "/workspace/modules_humann_test/subworkflows/nf-core/fastq_taxonomic_profile_metaphlan/tests/nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastq_taxonomic_profile_metaphlan"
+    tag "metaphlan/makedb"
+    tag "metaphlan/metaphlan"
+    tag "metaphlan/mergemetaphlantables"
+
+
+    test("sarscov2 - fastq - paired_end") {
+
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                        [ id:'test1', single_end:false ], // meta map
+                        [file('/workspace/modules_humann_test/modules/local/data/demo.fastq.gz', checkIfExists: true)]
+                        ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}

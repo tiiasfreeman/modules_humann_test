@@ -32,19 +32,21 @@ nextflow_workflow {
                 input[0] = "DEMO"
                 input[1] = "DEMO_diamond"
                 input[2] = "full"
-                input[3] = Channel.of([
-                        [ id:'test1', single_end:false ], // meta map
-                        [file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true),
-                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz', checkIfExists: true)]
-                        //[ id:'test1', single_end:false ], // meta map
-                        //[file('/workspace/modules_humann_test/modules/local/data/demo.fastq.gz', checkIfExists: true)]
-                        ])
+                input[3] = Channel.of (
+                    [[ id:'test1', single_end:false ], // meta map
+                            [file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_1.fastq.gz', checkIfExists: true),
+                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/illumina/fastq/test1_2.fastq.gz', checkIfExists: true)
+                            ]],
+                    [[ id:'test2', single_end:false ], // meta map
+                            [file('/workspace/modules_humann_test/modules/local/data/demo.fastq.gz', checkIfExists: true)
+                            ]]
+                            )
                 input[4] = [
                     [ id:'test', single_end:true ], // meta map
-                    file("/workspace/modules_humann_test/METAPHLAN_PROFILE_FOR_TEST.txt", checkIfExists: true)]
+                    file('/workspace/modules_humann_test/METAPHLAN_PROFILE_COPY.txt', checkIfExists: true)]
                 input[5] = "cpm"
                 input[6] = "uniref90_rxn"
-                input[7] = "kegg-orthology"
+                input[7] = "metacyc-pwy"
                 input[8] = "Y"
                 """
             }

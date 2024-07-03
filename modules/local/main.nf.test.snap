@@ -1,0 +1,25 @@
+{
+    "sarscov2 - fastq - paired_end": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    "versions.yml:md5,7a8a0a934b8782f4bcb0b2de929e30e2"
+                ],
+                "merged_taxa": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,7a8a0a934b8782f4bcb0b2de929e30e2"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.2"
+        },
+        "timestamp": "2024-07-03T06:47:53.231575205"
+    }
+}
